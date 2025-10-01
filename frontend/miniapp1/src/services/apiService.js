@@ -1,7 +1,7 @@
 // services/apiService.js
 
 // --- Правильное использование API_BASE_URL ---
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://money-njxgzv3z7-slava-incs-projects.vercel.app/'; // 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://money-box-wkbl.onrender.com'; // 'http://localhost:8000'
 
 // --- Пример использования options ---
 async function apiRequest(endpoint, options = {}) { // options используется как параметр функции
