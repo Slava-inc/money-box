@@ -15,4 +15,4 @@ app.include_router(routes_admin.router)
 def read_root():
     return {"message": "Savings Tracker API"}
 
-# uvicorn app.main:app --reload
+# uvicorn backend.app.main:app --reload
