@@ -16,3 +16,4 @@ def read_root():
     return {"message": "Savings Tracker API"}
 
 # uvicorn backend.app.main:app --reload
+# https://money-box-wkbl.onrender.com

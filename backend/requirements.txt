@@ -7,9 +7,6 @@ uvicorn[standard]>=0.23.0,<0.24.0
 # Работа с базой данных
 sqlalchemy>=2.0.0,<3.0.0
 
-# Драйвер для PostgreSQL (выберите нужный для вашей БД)
-# Для PostgreSQL
-asyncpg>=0.28.0,<0.29.0
 # Альтернатива для PostgreSQL (может требовать psycopg2-binary)
 # psycopg2-binary>=2.9.0,<3.0.0
 #
