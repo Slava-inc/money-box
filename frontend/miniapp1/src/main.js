@@ -13,8 +13,6 @@ const vuetify = createVuetify({
   directives,
 })
 
-const app = createApp(App)
-
 // Инициализация SDK
 // init() возвращает объект с методами и данными
 const telegramWebApp = init();
@@ -31,6 +29,8 @@ if (telegramWebApp) {
   console.error('Failed to initialize Telegram WebApp SDK via npm.');
   alert('Пожалуйста, откройте это приложение через Telegram-бота.');
 }
+
+const app = createApp(App)
 
 app.config.globalProperties.$telegramInitData = initData;
 
