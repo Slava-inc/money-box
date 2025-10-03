@@ -76,3 +76,15 @@ def get_leaderboard(
     # Преобразуем результат в список Pydantic моделей
     leaderboard = [schemas.LeaderboardEntry(rank=row.rank, username=row.username or "Anonymous", progress_percentage=row.progress_percentage) for row in result]
     return leaderboard
+
+@router.get("/debug-initdata/", response_model=schemas.User)
+def debug_initdata(
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Эндпоинт для отладки: возвращает текущего пользователя.
+    Используется для проверки, что initData дошла до бэкенда и была успешно проверена.
+    """
+    # Возвращаем пользователя, чтобы подтвердить, что аутентификация прошла успешно
+    return current_user

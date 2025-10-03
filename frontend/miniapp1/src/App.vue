@@ -16,6 +16,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { debugInitData } from './services/apiService';
+
+// --- Получение initData через window.Telegram.WebApp ---
+const debugResult = ref<string | null>(null);
 
 // --- Декларация типа для глобального объекта window ---
 declare global {
@@ -31,9 +35,17 @@ declare global {
 // --- Получение initData через window.Telegram.WebApp ---
 const initData = ref<string | null>(null);
 
-onMounted(() => {
+onMounted(async () => {
   // Проверка наличия глобального объекта Telegram WebApp
   if (window.Telegram && window.Telegram.WebApp) {
+    try {
+      // Выполняем отладочный запрос
+      const result = await debugInitData();
+      debugResult.value = `Success: User ID ${result.id}, Username ${result.username}`;
+    } catch (error) {
+      const err = error as Error
+      debugResult.value = `Error: ${err.message}`;
+    }    
     // Получаем initData из глобального объекта
     initData.value = window.Telegram.WebApp.initData;
     console.log('App.vue: initData from window.Telegram.WebApp:', initData.value);
