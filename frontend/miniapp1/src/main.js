@@ -1,37 +1,28 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './index.css'
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-// Импорт SDK
-import { init } from '@twa-dev/sdk'
-
+// frontend/miniapp1/src/main.ts
+import { createApp } from 'vue';
+import App from './App.vue';
+import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
+import 'vuetify/styles';
+import { createPinia } from 'pinia'; // Импорт Pinia
+//import { createRouter, createWebHistory } from 'vue-router' // Если используете маршрутизацию
+//import  routes  from './router' // Если используете маршрутизацию
+// Создание экземпляра Pinia
+const pinia = createPinia();
+// Создание экземпляра Vuetify
 const vuetify = createVuetify({
-  components,
-  directives,
-})
-
-// Инициализация SDK
-// init() возвращает объект с методами и данными
-const telegramWebApp = init();
-
-// Получение initData
-let initData = null;
-if (telegramWebApp) {
-  // initData находится в свойстве initData
-  initData = telegramWebApp.initData;
-  console.log('Telegram WebApp SDK loaded via npm');
-  console.log('initData:', initData); // Для отладки
-  // telegramWebApp.ready(); // Опционально
-} else {
-  console.error('Failed to initialize Telegram WebApp SDK via npm.');
-  alert('Пожалуйста, откройте это приложение через Telegram-бота.');
-}
-
-const app = createApp(App)
-
-app.config.globalProperties.$telegramInitData = initData;
-
-app.use(vuetify).mount('#app')
+    components,
+    directives,
+});
+// Создание экземпляра приложения
+const app = createApp(App);
+// Подключение Pinia (и, при необходимости, маршрутизатора)
+app.use(pinia);
+//const routs = createRouter({ history: createWebHistory(), routes }) // Если используете маршрутизацию
+//app.use(routs) // Если используете маршрутизацию
+// Подключение Vuetify
+app.use(vuetify);
+// Монтирование приложения к элементу с id="app" в index.html
+app.mount('#app');
+//# sourceMappingURL=main.js.map
